@@ -2,64 +2,63 @@ CREATE DATABASE PlaceMyBet;
 
 USE PlaceMyBet;
 
-CREATE TABLE  evento
-(idEvento INT NOT NULL,
-nombreEquipo VARCHAR(50) NOT NULL,
+CREATE TABLE  eventos
+(idEventos INT NOT NULL,
+nombreEquipos VARCHAR(50) NOT NULL,
 visitantes INT ,
-fechaEvento DATE NOT NULL,
-PRIMARY KEY (idEvento));
+fechaEventos DATE NOT NULL,
+PRIMARY KEY (idEventos));
 
 CREATE TABLE mercados
-(idMercado INT not NULL,
-tipoMercado double NOT NULL ,
-id_evento INT NOT NULL,
+(idMercados INT not NULL,
+tipoMercados double NOT NULL ,
+id_eventos INT NOT NULL,
 cuotaOver double NOT NULL,
 cuotaUnder double NOT NULL,
 dineroOver double NOT NULL,
 dineroUnder double NOT NULL,
-PRIMARY KEY (idMercado));
+PRIMARY KEY (idMercados));
 
-CREATE TABLE infoApuesta
-(idApuesta INT NOT NULL, 
-id_mercado INT NOT NULL,
-email_usuario VARCHAR(50) NOT NULL,
-tipoApuesta TINYINT(1) NOT NULL,
-cuota double NOT NULL,
-dineroApostado double NOT NULL,
-fechaApuesta DATE NOT NULL ,
-PRIMARY KEY(idApuesta));
+CREATE TABLE infoApuestas
+(idApuestas INT NOT NULL, 
+id_mercados INT NOT NULL,
+email_usuarios VARCHAR(50) NOT NULL,
+tipoApuestas TINYINT(1) NOT NULL,
+cuotas double NOT NULL,
+dineroApostados double NOT NULL,
+fechaApuestas DATE NOT NULL ,
+PRIMARY KEY(idApuestas));
 
-CREATE TABLE usuario
+CREATE TABLE usuarios
 (email VARCHAR(50) NOT NULL,
-contraseña VARCHAR(50) NOT NULL,
-nombre VARCHAR(30) NOT NULL,
-apellido VARCHAR(30) NOT NULL,
+nombres VARCHAR(30) NOT NULL,
+apellidos VARCHAR(30) NOT NULL,
 edad INT NOT NULL,
 PRIMARY KEY(email));
 
-CREATE TABLE cuenta
-(idCuenta INT NOT NULL,
-email_usuario VARCHAR(50) NOT NULL,
-saldo double NOT NULL,
-numeroTarjeta VARCHAR(30)NOT NULL,
-nombreBaco VARCHAR(30) NOT NULL,
-PRIMARY KEY (idCuenta));
+CREATE TABLE cuentas
+(idCuentas INT NOT NULL,
+email_usuarios VARCHAR(50) NOT NULL,
+saldos double NOT NULL,
+numeroTarjetas VARCHAR(30)NOT NULL,
+nombreBacos VARCHAR(30) NOT NULL,
+PRIMARY KEY (idCuentas));
 
-ALTER TABLE mercados ADD CONSTRAINT r1 FOREIGN KEY (id_evento) REFERENCES evento(idEvento);
+ALTER TABLE mercados ADD CONSTRAINT r1 FOREIGN KEY (id_eventos) REFERENCES eventos(idEventos);
 
-ALTER TABLE infoApuesta ADD CONSTRAINT r2 FOREIGN KEY (id_mercado) REFERENCES mercados(idMercado) ;
+ALTER TABLE infoApuestas ADD CONSTRAINT r2 FOREIGN KEY (id_mercados) REFERENCES mercados(idMercados) ;
 
-ALTER TABLE infoApuesta ADD CONSTRAINT r3 FOREIGN KEY (email_usuario) REFERENCES usuario(email) ;
+ALTER TABLE infoApuestas ADD CONSTRAINT r3 FOREIGN KEY (email_usuarios) REFERENCES usuarios(email) ;
 
-ALTER TABLE cuenta ADD CONSTRAINT r4 FOREIGN KEY (email_usuario) REFERENCES usuario(email) ;
+ALTER TABLE cuentas ADD CONSTRAINT r4 FOREIGN KEY (email_usuarios) REFERENCES usuarios(email) ;
 
-INSERT INTO evento VALUES(1,'Madrid-Valencia',1000,'2020-9-23');
+INSERT INTO eventos VALUES(1,'Madrid-Valencia',1000,'2020-9-23');
 
-INSERT INTO mercados(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(1,1.5,1,1.43,2.85,100,50);
+INSERT INTO mercados(idMercados,tipoMercados ,id_eventos ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(1,1.5,1,1.43,2.85,100,50);
 
-INSERT INTO usuario(email ,contraseña ,nombre,apellido ,edad) VALUES('luo.luo.ll14@gmail.com','123','wei','luo',20);
+INSERT INTO usuarios(email,nombres,apellidos ,edad) VALUES('luo.luo.ll14@gmail.com','wei','luo',20);
 
-INSERT INTO infoApuesta(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta)
+INSERT INTO infoApuestas(idApuestas , id_mercados ,email_usuarios ,tipoApuestas ,cuotas ,dineroApostados ,fechaApuestas)
 VALUES(1,1,'luo.luo.ll14@gmail.com',1,100,50,'2020-9-29');
 
-INSERT INTO cuenta VALUES(1,'luo.luo.ll14@gmail.com',2000,'8712487572316','Bankia');
+INSERT INTO cuentas VALUES(1,'luo.luo.ll14@gmail.com',2000,'8712487572316','Bankia');
