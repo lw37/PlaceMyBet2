@@ -11,11 +11,11 @@ namespace PlaceMyBet.Controllers
     public class ApuestasController : ApiController
     {
         // GET: api/Apuestas
-        public IEnumerable<Usuario> Get()
+        public IEnumerable<ApuestaDTO> Get()
         {
-            var repo = new UsuariosRepository();
-            List<Usuario> usuarios = repo.Retrieve();
-            return usuarios;
+            var repo = new ApuestasRepository();
+            List<ApuestaDTO> apuestas = repo.RetrieveDTO();
+            return apuestas;
         }
 
         // GET: api/Apuestas/5
@@ -25,8 +25,10 @@ namespace PlaceMyBet.Controllers
         }
 
         // POST: api/Apuestas
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Apuesta apuesta)
         {
+            var repo = new ApuestasRepository();
+            repo.Insertar(apuesta);
         }
 
         // PUT: api/Apuestas/5

@@ -5,9 +5,9 @@ USE PlaceMyBet;
 CREATE TABLE  EVENTOS
 (idEvento INT NOT NULL,
 nombreEquipo VARCHAR(50) NOT NULL,
-visitante INT NOT NULL,
+visitante VARCHAR(50) NOT NULL,
 fechaEvento DATE NOT NULL,
-PRIMARY KEY (idEventos));
+PRIMARY KEY (idEvento));
 
 CREATE TABLE MERCADOS
 (idMercado INT not NULL,
@@ -52,13 +52,17 @@ ALTER TABLE APUESTAS ADD CONSTRAINT r3 FOREIGN KEY (email_usuario) REFERENCES us
 
 ALTER TABLE CUENTAS ADD CONSTRAINT r4 FOREIGN KEY (email_usuario) REFERENCES usuarios(email) ;
 
-INSERT INTO EVENTOS VALUES(1,'Madrid-Valencia',1000,'2020-9-23');
 
-INSERT INTO MERCADOS(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(1,1.5,1,1.43,2.85,100,50);
+
+INSERT INTO EVENTOS VALUES(1,'Madrid','Valencia','2020-9-23');
+
+INSERT INTO MERCADOS(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(1,1.5,1,1.43,2.85,100,0);
 
 INSERT INTO USUARIOS(email,nombre,apellido ,edad) VALUES('luo.luo.ll14@gmail.com','wei','luo',20);
 
 INSERT INTO APUESTAS(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta)
-VALUES(1,1,'luo.luo.ll14@gmail.com',1,100,50,'2020-9-29');
+VALUES(1,1,'luo.luo.ll14@gmail.com',1,1.43,50,'2020-9-29');
 
 INSERT INTO cuentas VALUES(1,'luo.luo.ll14@gmail.com',2000,'8712487572316','Bankia');
+
+select email_usuario ,tipomercado,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta from APUESTAS inner join Mercados on id_mercado=idMercado;

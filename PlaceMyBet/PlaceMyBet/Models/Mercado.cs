@@ -26,4 +26,20 @@ namespace PlaceMyBet.Models
             this.dineroUnder = dineroUnder;
         }
     }
+    public class MercadoDTO
+    {
+
+        public double tipoMercados { get; set; }
+        public double cuotaOver { get; set; }
+        public double cuotaUnder { get; set; }
+
+
+        public MercadoDTO( double tipoMercados, double cuotaOver, double cuotaUnder)
+        {
+            this.tipoMercados = tipoMercados;
+            this.cuotaOver = cuotaOver;
+            this.cuotaUnder = cuotaUnder;
+           
+        }
+    }
 }

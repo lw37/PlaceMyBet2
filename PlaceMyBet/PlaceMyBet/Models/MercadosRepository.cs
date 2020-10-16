@@ -56,5 +56,36 @@ namespace PlaceMyBet.Models
             }
         }
 
+        internal List<MercadoDTO> RetrieveDTO()
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "select tipoMercado,cuotaOver,cuotaUnder from mercados";
+            try
+            {
+                con.Open();
+                MySqlDataReader resultado = command.ExecuteReader();
+
+                MercadoDTO mercado = null;
+                List<MercadoDTO> mercados = new List<MercadoDTO>();
+                while (resultado.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + resultado.GetDouble(0) + " "
+                        + resultado.GetDouble(1) + " " + resultado.GetDouble(2));
+
+                    mercado = new MercadoDTO( resultado.GetDouble(0), resultado.GetDouble(1), resultado.GetDouble(2)
+                      );
+                    mercados.Add(mercado);
+                }
+                con.Close();
+                return mercados;
+            }
+            catch (Exception)
+            {
+
+                Debug.WriteLine("Ha ocurrido un error.");
+                return null;
+            }
+        }
     }
 }
