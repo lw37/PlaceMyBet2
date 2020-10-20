@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -130,7 +131,7 @@ namespace PlaceMyBet.Models
             
             if (a.tipoApuesta)
             {
-                command.CommandText = "Select cuotaOver from Mercados where idMercado =1;";
+                command.CommandText = "Select cuotaOver from Mercados where idmercado="+a.idMercados+";";
                 try
                 {
                     con.Open();
@@ -146,9 +147,9 @@ namespace PlaceMyBet.Models
 
                     throw;
                 }
-                command.CommandText = "Update Mercados set dineroOver=dineroOver+" + a.dineroApostado + 
-                                    " where idmercado="+a.idMercados+"" +
-                                      "Update Mercados set cuotaOver=1/"+Probabilidad(a)+"*0.95 where idmercado = " + a.idMercados + "; ";
+                command.CommandText = "Update Mercados set dineroOver=dineroOver + " + a.dineroApostado + 
+                                    " where idmercado="+a.idMercados+";" +
+                                      "Update Mercados set cuotaOver=1/("+Probabilidad(a)+"*0.95) where idmercado = " + a.idMercados + "; ";
                 Debug.WriteLine("comando " + command.CommandText);
                 try
                 {
@@ -165,7 +166,7 @@ namespace PlaceMyBet.Models
             }
             else
             {
-                command.CommandText = "Select cuotaUnder from Mercados where idMercado =1;";
+                command.CommandText = "Select cuotaUnder from Mercados where idMercado ="+a.idMercados+";";
                 try
                 {
                     con.Open();
@@ -183,7 +184,7 @@ namespace PlaceMyBet.Models
                 }
                 command.CommandText = "Update Mercados set dineroUnder=dineroUnder+" + a.dineroApostado +
                     " where idmercado=" + a.idMercados + ";" +
-                    "Update Mercados set cuotaUnder=dineroUnder/" + Probabilidad(a) + "*0.95 where idmercado = " + a.idMercados + "; ";
+                    "Update Mercados set cuotaUnder=dineroUnder/(" + Probabilidad(a) + "*0.95) where idmercado = " + a.idMercados + "; ";
                 Debug.WriteLine("comando " + command.CommandText);
                 try
                 {
@@ -202,8 +203,15 @@ namespace PlaceMyBet.Models
 
         internal void Insertar(Apuesta a)//No me deja enviar datos a bbdd por fallo de punto y comas de la cuota
         {
+            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
 
-         
+            culInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            culInfo.NumberFormat.PercentDecimalSeparator = ".";
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
+
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
 

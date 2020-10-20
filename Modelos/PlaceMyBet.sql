@@ -64,5 +64,3 @@ INSERT INTO APUESTAS(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,
 VALUES(1,1,'luo.luo.ll14@gmail.com',1,1.43,50,'2020-9-29');
 
 INSERT INTO cuentas VALUES(1,'luo.luo.ll14@gmail.com',2000,'8712487572316','Bankia');
-
-select email_usuario ,tipomercado,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta from APUESTAS inner join Mercados on id_mercado=idMercado;
