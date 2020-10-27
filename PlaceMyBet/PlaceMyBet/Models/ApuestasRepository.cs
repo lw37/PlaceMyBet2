@@ -34,17 +34,17 @@ namespace PlaceMyBet.Models
                 con.Open();
                 MySqlDataReader resultado = command.ExecuteReader();
 
-               Apuesta apuesta = null;
+                Apuesta apuesta = null;
                 List<Apuesta> apuestas = new List<Apuesta>();
                 while (resultado.Read())
                 {
                     Debug.WriteLine("Recuperado: " + resultado.GetInt32(0) + " " + resultado.GetInt32(1) + " "
                         + resultado.GetString(2) + " " + resultado.GetBoolean(3) + " " + resultado.GetDouble(4)
-                        + " " + resultado.GetDouble(5) + " " + resultado.GetDouble(6) + " " + resultado.GetDateTime(7));
+                        + " " + resultado.GetDouble(5) + " " + resultado.GetDateTime(6));
 
                     apuesta = new Apuesta(resultado.GetInt32(0), resultado.GetInt32(1),
-                        resultado.GetString(2),resultado.GetDouble(3) ,resultado.GetBoolean(4), resultado.GetDouble(5),
-                        resultado.GetDouble(6), resultado.GetDateTime(7));
+                        resultado.GetString(2) ,resultado.GetBoolean(3), resultado.GetDouble(4),
+                        resultado.GetDouble(5), resultado.GetDateTime(6));
                     apuestas.Add(apuesta);
                 }
                 con.Close();
@@ -58,10 +58,16 @@ namespace PlaceMyBet.Models
             }
         }
 
-        internal List<ApuestaDTO> RetrieveDTO()
+        internal List<ApuestaDTO> RetrieveDTObyEmail(string email,double tipoMercado)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1.5
         {
+            Comas();
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
+            command.CommandText = "SELECT nombreEquipo,visitante,fechaEvento,tipoapuesta,cuota,dineroapostado FROM apuestas " +
+                "INNER JOIN mercados on apuestas.id_mercado=mercados.idMercado INNER JOIN eventos ON mercados.id_evento=eventos.idEvento" +
+                " WHERE email_usuario=@A AND tipoMercado=@B; ";
+            command.Parameters.AddWithValue("@A", email);
+            command.Parameters.AddWithValue("@B", tipoMercado);
             try
             {
                 con.Open();
@@ -71,11 +77,11 @@ namespace PlaceMyBet.Models
                 List<ApuestaDTO> apuestas = new List<ApuestaDTO>();
                 while (resultado.Read())
                 {
-                    Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetDouble(1) + " " + resultado.GetBoolean(2) + " " + resultado.GetDouble(3)
-                        + " " + resultado.GetDouble(4) + " " + resultado.GetDateTime(5));
+                    Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetString(1) + " " + resultado.GetDateTime(2) + " " + resultado.GetBoolean(3)
+                        + " " + resultado.GetDouble(4) + " " + resultado.GetDouble(5));
 
-                    apuesta = new ApuestaDTO(resultado.GetString(0), resultado.GetDouble(1), resultado.GetBoolean(2), resultado.GetDouble(3),
-                        resultado.GetDouble(4), resultado.GetDateTime(5));
+                    apuesta = new ApuestaDTO(resultado.GetString(0), resultado.GetString(1), resultado.GetDateTime(2), resultado.GetBoolean(3),
+                        resultado.GetDouble(4), resultado.GetDouble(5));
                     apuestas.Add(apuesta);
                 }
                 con.Close();
@@ -87,6 +93,16 @@ namespace PlaceMyBet.Models
                 Debug.WriteLine("Ha ocurrido un error.");
                 return null;
             }
+        }
+
+        public void Comas()
+        {
+            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
+            culInfo.NumberFormat.NumberDecimalSeparator = ".";
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            culInfo.NumberFormat.PercentDecimalSeparator = ".";
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
         }
 
         public double Probabilidad(Apuesta apu)
@@ -201,17 +217,10 @@ namespace PlaceMyBet.Models
             return cuota;
         }
 
-        internal void Insertar(Apuesta a)//No me deja enviar datos a bbdd por fallo de punto y comas de la cuota
+        internal void Insertar(Apuesta a)
         {
-            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
 
-            culInfo.NumberFormat.NumberDecimalSeparator = ".";
-
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            culInfo.NumberFormat.PercentDecimalSeparator = ".";
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
-
+            Comas();
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
 
@@ -235,5 +244,43 @@ namespace PlaceMyBet.Models
             }
            
         }
+        internal List<ApuestaDTOmer> RetrieveDTObyMercado(int idMercado, string email)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1
+
+        {
+            Comas();
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "SELECT tipoMercado,tipoapuesta,cuota,dineroapostado FROM apuestas " +
+                "INNER JOIN mercados on apuestas.id_mercado=mercados.idMercado INNER JOIN eventos ON mercados.id_evento=eventos.idEvento" +
+                " WHERE email_usuario=@A AND idMercado=@B; ";
+            command.Parameters.AddWithValue("@A", email);
+            command.Parameters.AddWithValue("@B", idMercado);
+            try
+            {
+                con.Open();
+                MySqlDataReader resultado = command.ExecuteReader();
+
+                ApuestaDTOmer apuesta = null;
+                List<ApuestaDTOmer> apuestas = new List<ApuestaDTOmer>();
+                while (resultado.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + resultado.GetDouble(0)  + resultado.GetBoolean(1)
+                        + " " + resultado.GetDouble(2) + " " + resultado.GetDouble(3));
+
+                    apuesta = new ApuestaDTOmer(resultado.GetDouble(0), resultado.GetBoolean(1),
+                        resultado.GetDouble(2), resultado.GetDouble(3));
+                    apuestas.Add(apuesta);
+                }
+                con.Close();
+                return apuestas;
+            }
+            catch (Exception)
+            {
+
+                Debug.WriteLine("Ha ocurrido un error.");
+                return null;
+            }
+        }
+
     }
 }

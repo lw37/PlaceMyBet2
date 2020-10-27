@@ -56,11 +56,25 @@ ALTER TABLE CUENTAS ADD CONSTRAINT r4 FOREIGN KEY (email_usuario) REFERENCES usu
 
 INSERT INTO EVENTOS VALUES(1,'Madrid','Valencia','2020-9-23');
 
+INSERT INTO EVENTOS VALUES(2,'Bacelona','Valencia','2020-10-23');
+
 INSERT INTO MERCADOS(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(1,1.5,1,1.43,2.85,100,0);
+
+INSERT INTO MERCADOS(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(2,2.5,1,1.9,1.9,200,50);
+
+INSERT INTO MERCADOS(idMercado,tipoMercado ,id_evento ,cuotaOver ,cuotaUnder ,dineroOver,dineroUnder ) VALUES(3,3.5,2,2.85,1.43,500,100);
 
 INSERT INTO USUARIOS(email,nombre,apellido ,edad) VALUES('luo.luo.ll14@gmail.com','wei','luo',20);
 
+INSERT INTO USUARIOS(email,nombre,apellido ,edad) VALUES('luo.luo.ll13@gmail.com','wei1','luo1',30);
+
 INSERT INTO APUESTAS(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta)
 VALUES(1,1,'luo.luo.ll14@gmail.com',1,1.43,50,'2020-9-29');
+
+INSERT INTO APUESTAS(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta)
+VALUES(4,1,'luo.luo.ll14@gmail.com',0,1.43,30,'2020-10-29');
+
+INSERT INTO APUESTAS(idApuesta , id_mercado ,email_usuario ,tipoApuesta ,cuota ,dineroApostado ,fechaApuesta)
+VALUES(6,2,'luo.luo.ll13@gmail.com',0,1.43,50,'2020-9-29');
 
 INSERT INTO cuentas VALUES(1,'luo.luo.ll14@gmail.com',2000,'8712487572316','Bankia');

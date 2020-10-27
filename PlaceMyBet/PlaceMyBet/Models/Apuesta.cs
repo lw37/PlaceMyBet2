@@ -10,43 +10,60 @@ namespace PlaceMyBet.Models
         public int idApuestas { get; set; }
         public int idMercados { get; set; }
         public string emailUsuarios { get; set; }
-        public double tipoMercado { get; set; }
+        
         public bool tipoApuesta { get; set; }
         public double cuotas { get; set; }
         public double dineroApostado { get; set; }
         public DateTime fechaApuestas { get; set; }
 
-        public Apuesta(int idApuestas, int idMercados, string emailUsuarios, double tipoMercado, bool tipoApuesta, double cuotas, double dineroApostado, DateTime fechaApuestas)
+        public Apuesta(int idApuestas, int idMercados, string emailUsuarios, bool tipoApuesta, double cuotas, double dineroApostado, DateTime fechaApuestas)
         {
             this.idApuestas = idApuestas;
             this.idMercados = idMercados;
             this.emailUsuarios = emailUsuarios;
-            this.tipoMercado = tipoMercado;
+            
             this.tipoApuesta = tipoApuesta;
             this.cuotas = cuotas;
             this.dineroApostado = dineroApostado;
             this.fechaApuestas = fechaApuestas;
         }
     }
-        public class ApuestaDTO
+    public class ApuestaDTO
+    {
+        public string nombreEquipo { get; set; }
+        public string visitante { get; set; }
+        public DateTime fechaEvento { get; set; }
+        public bool tipoApuesta { get; set; }
+        public double cuotas { get; set; }
+        public double dineroApostado { get; set; }
+
+        public ApuestaDTO(string nombreEquipo, string visitante, DateTime fechaEvento, bool tipoApuesta, double cuotas, double dineroApostado)
         {
-
-            public string emailUsuarios { get; set; }
-            public double tipoMercado { get; set; }
-            public bool tipoApuesta { get; set; }
-            public double cuotas { get; set; }
-            public double dineroApostado { get; set; }
-            public DateTime fechaApuestas { get; set; }
-
-            public ApuestaDTO(string emailUsuarios,double tipoMercado, bool tipoApuesta, double cuotas, double dineroApostado, DateTime fechaApuestas)
-            {
-                this.emailUsuarios = emailUsuarios;
-                this.tipoMercado = tipoMercado;
-                this.tipoApuesta = tipoApuesta;
-                this.cuotas = cuotas;
-                this.dineroApostado = dineroApostado;
-                this.fechaApuestas = fechaApuestas;
-            }
+            this.nombreEquipo = nombreEquipo;
+            this.visitante = visitante;
+            this.fechaEvento = fechaEvento;
+            this.tipoApuesta = tipoApuesta;
+            this.cuotas = cuotas;
+            this.dineroApostado = dineroApostado;
         }
-    
+    }
+    public class ApuestaDTOmer
+    {
+        public ApuestaDTOmer(double tipoMercado, bool tipoApuesta, double cuotas, double dineroApostado)
+        {
+            this.tipoMercado = tipoMercado;
+            this.tipoApuesta = tipoApuesta;
+            this.cuotas = cuotas;
+            this.dineroApostado = dineroApostado;
+        }
+
+        public double tipoMercado { get; set; }
+        public bool tipoApuesta { get; set; }
+        public double cuotas { get; set; }
+        public double dineroApostado { get; set; }
+
+
+
+    }
+
 }
