@@ -62,11 +62,12 @@ namespace PlaceMyBet.Models
         {
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
+            command.CommandText = " SELECT email_usuario ,tipoMercado,cuota,tipoApuesta,dineroapostado,fechaApuesta FROM apuestas INNER JOIN mercados ON apuestas.id_mercado=mercados.idMercado;";
             try
             {
                 con.Open();
                 MySqlDataReader resultado = command.ExecuteReader();
-
+                
                 ApuestaDTO apuesta = null;
                 List<ApuestaDTO> apuestas = new List<ApuestaDTO>();
                 while (resultado.Read())
