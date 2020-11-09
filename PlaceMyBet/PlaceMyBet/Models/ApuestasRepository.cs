@@ -184,8 +184,8 @@ namespace PlaceMyBet.Models
 
                 }
                 command.CommandText = "Update Mercados set dineroUnder=dineroUnder+" + a.dineroApostado +
-                    " where idmercado=" + a.idMercados + ";" +
-                    "Update Mercados set cuotaUnder=dineroUnder/(" + Probabilidad(a) + "*0.95) where idmercado = " + a.idMercados + "; ";
+                                    " where idmercado=" + a.idMercados + ";" +
+                                     "Update Mercados set cuotaUnder=1/(" + Probabilidad(a) + "*0.95) where idmercado = " + a.idMercados + "; ";
                 Debug.WriteLine("comando " + command.CommandText);
                 try
                 {
