@@ -9,7 +9,7 @@ namespace PlaceMyBet.Models
 {
     public class MercadosRepository
     {
-        private MySqlConnection Connect()
+       /* private MySqlConnection Connect()
         {
             string server = "server=localhost;";
             string port = "port=3306;";
@@ -55,10 +55,10 @@ namespace PlaceMyBet.Models
                 Debug.WriteLine("Ha ocurrido un error.");
                 return null;
             }
-        }
+        }*/
 
         internal List<MercadoDTO> RetrieveDTO()
-        {
+        {/*
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
             command.CommandText = "select tipoMercado,cuotaOver,cuotaUnder from mercados";
@@ -86,50 +86,52 @@ namespace PlaceMyBet.Models
 
                 Debug.WriteLine("Ha ocurrido un error.");
                 return null;
-            }
+            }*/
+            return null;
         }
 
 
         internal List<Mercado> RetrieveByMercadoEvento(int idEve,double tpMer)
         {
-            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
-            culInfo.NumberFormat.NumberDecimalSeparator = ".";
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            culInfo.NumberFormat.PercentDecimalSeparator = ".";
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "SELECT * FROM mercados WHERE id_evento=@A AND tipoMercado=@B";
-            command.Parameters.AddWithValue("@A", idEve);
-            command.Parameters.AddWithValue("@B", tpMer);
-            try
-            {
-                con.Open();
-                MySqlDataReader resultado = command.ExecuteReader();
+            /* CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
+             culInfo.NumberFormat.NumberDecimalSeparator = ".";
+             culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+             culInfo.NumberFormat.PercentDecimalSeparator = ".";
+             culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+             System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
+             MySqlConnection con = Connect();
+             MySqlCommand command = con.CreateCommand();
+             command.CommandText = "SELECT * FROM mercados WHERE id_evento=@A AND tipoMercado=@B";
+             command.Parameters.AddWithValue("@A", idEve);
+             command.Parameters.AddWithValue("@B", tpMer);
+             try
+             {
+                 con.Open();
+                 MySqlDataReader resultado = command.ExecuteReader();
 
-                Mercado mercado = null;
-                List<Mercado> mercados = new List<Mercado>();
-                while (resultado.Read())
-                {
-                    Debug.WriteLine("Recuperado: " + resultado.GetInt32(0) + " " + resultado.GetDouble(1) + " "
-                        + resultado.GetInt32(2) + " " + resultado.GetDouble(3) + " " + resultado.GetDouble(4)
-                        + " " + resultado.GetDouble(5) + " " + resultado.GetDouble(6));
+                 Mercado mercado = null;
+                 List<Mercado> mercados = new List<Mercado>();
+                 while (resultado.Read())
+                 {
+                     Debug.WriteLine("Recuperado: " + resultado.GetInt32(0) + " " + resultado.GetDouble(1) + " "
+                         + resultado.GetInt32(2) + " " + resultado.GetDouble(3) + " " + resultado.GetDouble(4)
+                         + " " + resultado.GetDouble(5) + " " + resultado.GetDouble(6));
 
-                    mercado = new Mercado(resultado.GetInt32(0), resultado.GetDouble(1),
-                        resultado.GetInt32(2), resultado.GetDouble(3), resultado.GetDouble(4),
-                        resultado.GetDouble(5), resultado.GetDouble(6));
-                    mercados.Add(mercado);
-                }
-                con.Close();
-                return mercados;
-            }
-            catch (Exception)
-            {
+                     mercado = new Mercado(resultado.GetInt32(0), resultado.GetDouble(1),
+                         resultado.GetInt32(2), resultado.GetDouble(3), resultado.GetDouble(4),
+                         resultado.GetDouble(5), resultado.GetDouble(6));
+                     mercados.Add(mercado);
+                 }
+                 con.Close();
+                 return mercados;
+             }
+             catch (Exception)
+             {
 
-                Debug.WriteLine("Ha ocurrido un error.");
-                return null;
-            }
+                 Debug.WriteLine("Ha ocurrido un error.");
+                 return null;
+             }*/
+            return null;
         }
     }
 }

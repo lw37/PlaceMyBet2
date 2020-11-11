@@ -9,7 +9,7 @@ namespace PlaceMyBet.Models
 {
     public class UsuariosRepository
     {
-        private MySqlConnection Connect()
+        /*private MySqlConnection Connect()
         {
             string server = "server=localhost;";
             string port = "port=3306;";
@@ -21,38 +21,39 @@ namespace PlaceMyBet.Models
 
             MySqlConnection conexion = new MySqlConnection(connectionstring);
             return conexion;
-        }
+        }*/
 
         internal List<Usuario> Retrieve()
         {
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "select * from usuarios";
-            try
-            {
-                con.Open();
-                MySqlDataReader resultado = command.ExecuteReader();
+            /*  MySqlConnection con = Connect();
+              MySqlCommand command = con.CreateCommand();
+              command.CommandText = "select * from usuarios";
+              try
+              {
+                  con.Open();
+                  MySqlDataReader resultado = command.ExecuteReader();
 
-                Usuario usuario = null;
-                List<Usuario> usuarios = new List<Usuario>();
-                while (resultado.Read())
-                {
-                    Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetString(1) + " "
-                        + resultado.GetString(2) + " " + resultado.GetInt32(3));
-                    usuario = new Usuario(resultado.GetString(0), resultado.GetString(1),
-                        resultado.GetString(2), resultado.GetInt32(3));
-                    usuarios.Add(usuario);
-                }
-                con.Close();
-                return usuarios;
-            }
-            catch (Exception )
-            {
+                  Usuario usuario = null;
+                  List<Usuario> usuarios = new List<Usuario>();
+                  while (resultado.Read())
+                  {
+                      Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetString(1) + " "
+                          + resultado.GetString(2) + " " + resultado.GetInt32(3));
+                      usuario = new Usuario(resultado.GetString(0), resultado.GetString(1),
+                          resultado.GetString(2), resultado.GetInt32(3));
+                      usuarios.Add(usuario);
+                  }
+                  con.Close();
+                  return usuarios;
+              }
+              catch (Exception )
+              {
 
-                Debug.WriteLine("Ha ocurrido un error.");
-                return null;
-            }
-
+                  Debug.WriteLine("Ha ocurrido un error.");
+                  return null;
+              }
+              */
+            return null;
 
 
         }
