@@ -13,11 +13,11 @@ namespace PlaceMyBet.Models
         public double DineroApostado { get; set; }
         public DateTime FechaApuesta { get; set; }
         public int MercadoId { get; set; }
-        public int UsuarioId { get; set; }
+        public String UsuarioId { get; set; }
 
         public Apuesta() { }
 
-        public Apuesta(int idApuestas, bool tipoApuesta, double cuotas, double dineroApostado, DateTime fechaApuestas, int idMercados, int emailUsuarios)
+        public Apuesta(int idApuestas, bool tipoApuesta, double cuotas, double dineroApostado, DateTime fechaApuestas, int idMercados, String emailUsuarios)
         {
             ApuestaId = idApuestas;
             MercadoId = idMercados;

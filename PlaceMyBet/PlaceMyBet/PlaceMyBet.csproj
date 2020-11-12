@@ -342,6 +342,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Mercado.cs" />
     <Compile Include="Models\MercadosRepository.cs" />
+    <Compile Include="Models\PlaceMyBetContext.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuariosRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

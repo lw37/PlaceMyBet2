@@ -10,7 +10,7 @@ namespace PlaceMyBet.Models
 {
     public class ApuestasRepository
     {
-        private MySqlConnection Connect()
+        /*private MySqlConnection Connect()
         {
             string server = "server=localhost;";
             string port = "port=3306;";
@@ -56,43 +56,44 @@ namespace PlaceMyBet.Models
                 Debug.WriteLine("Ha ocurrido un error.");
                 return null;
             }
-        }
+        }*/
 
         internal List<ApuestaDTO> RetrieveDTObyEmail(string email,double tipoMercado)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1.5
         {
             Comas();
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "SELECT nombreEquipo,visitante,fechaEvento,tipoapuesta,cuota,dineroapostado FROM apuestas " +
-                "INNER JOIN mercados on apuestas.id_mercado=mercados.idMercado INNER JOIN eventos ON mercados.id_evento=eventos.idEvento" +
-                " WHERE email_usuario=@A AND tipoMercado=@B; ";
-            command.Parameters.AddWithValue("@A", email);
-            command.Parameters.AddWithValue("@B", tipoMercado);
-            try
-            {
-                con.Open();
-                MySqlDataReader resultado = command.ExecuteReader();
+            /* MySqlConnection con = Connect();
+             MySqlCommand command = con.CreateCommand();
+             command.CommandText = "SELECT nombreEquipo,visitante,fechaEvento,tipoapuesta,cuota,dineroapostado FROM apuestas " +
+                 "INNER JOIN mercados on apuestas.id_mercado=mercados.idMercado INNER JOIN eventos ON mercados.id_evento=eventos.idEvento" +
+                 " WHERE email_usuario=@A AND tipoMercado=@B; ";
+             command.Parameters.AddWithValue("@A", email);
+             command.Parameters.AddWithValue("@B", tipoMercado);
+             try
+             {
+                 con.Open();
+                 MySqlDataReader resultado = command.ExecuteReader();
 
-                ApuestaDTO apuesta = null;
-                List<ApuestaDTO> apuestas = new List<ApuestaDTO>();
-                while (resultado.Read())
-                {
-                    Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetString(1) + " " + resultado.GetDateTime(2) + " " + resultado.GetBoolean(3)
-                        + " " + resultado.GetDouble(4) + " " + resultado.GetDouble(5));
+                 ApuestaDTO apuesta = null;
+                 List<ApuestaDTO> apuestas = new List<ApuestaDTO>();
+                 while (resultado.Read())
+                 {
+                     Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetString(1) + " " + resultado.GetDateTime(2) + " " + resultado.GetBoolean(3)
+                         + " " + resultado.GetDouble(4) + " " + resultado.GetDouble(5));
 
-                    apuesta = new ApuestaDTO(resultado.GetString(0), resultado.GetString(1), resultado.GetDateTime(2), resultado.GetBoolean(3),
-                        resultado.GetDouble(4), resultado.GetDouble(5));
-                    apuestas.Add(apuesta);
-                }
-                con.Close();
-                return apuestas;
-            }
-            catch (Exception)
-            {
+                     apuesta = new ApuestaDTO(resultado.GetString(0), resultado.GetString(1), resultado.GetDateTime(2), resultado.GetBoolean(3),
+                         resultado.GetDouble(4), resultado.GetDouble(5));
+                     apuestas.Add(apuesta);
+                 }
+                 con.Close();
+                 return apuestas;
+             }
+             catch (Exception)
+             {
 
-                Debug.WriteLine("Ha ocurrido un error.");
-                return null;
-            }
+                 Debug.WriteLine("Ha ocurrido un error.");
+                 return null;
+             }*/
+            return null;
         }
 
         public void Comas()
@@ -107,7 +108,7 @@ namespace PlaceMyBet.Models
 
         public double Probabilidad(Apuesta apu)
         {
-            MySqlConnection con = Connect();
+            /*MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
             double prob = 0;
             double dOver = 0;
@@ -214,12 +215,13 @@ namespace PlaceMyBet.Models
                     throw;
                 }
             }
-            return cuota;
+            return cuota;*/
+            return 0;
         }
 
         internal void Insertar(Apuesta a)
         {
-
+/*
             Comas();
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
@@ -242,11 +244,11 @@ namespace PlaceMyBet.Models
                 Debug.WriteLine("Ha ocurrido un error de conexion");
                 throw;
             }
-           
+           */
         }
         internal List<ApuestaDTOmer> RetrieveDTObyMercado(int idMercado, string email)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1
 
-        {
+        {/*
             Comas();
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
@@ -279,7 +281,8 @@ namespace PlaceMyBet.Models
 
                 Debug.WriteLine("Ha ocurrido un error.");
                 return null;
-            }
+            }*/
+            return null;
         }
 
     }
