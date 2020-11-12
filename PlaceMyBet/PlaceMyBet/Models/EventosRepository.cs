@@ -52,11 +52,33 @@ namespace PlaceMyBet.Models
                 return null;
             }
         }*/
+        internal List<Evento> Retrieve()
+        {
 
+            List<Evento> eventos = new List<Evento>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                eventos = context.Eventos.ToList();
+            }
+            return eventos;
+        }
 
         internal List<EventoDTO> RetrieveDTO()
         {
-            /* MySqlConnection con = Connect();
+           
+            return null;
+        }
+
+        internal void save(Evento evento)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            context.Eventos.Add(evento);
+            context.SaveChanges();
+        }
+
+
+
+ /* MySqlConnection con = Connect();
              MySqlCommand command = con.CreateCommand();
              command.CommandText = "select nombreEquipo,visitante,fechaEvento from eventos";
              try
@@ -81,13 +103,13 @@ namespace PlaceMyBet.Models
                  Debug.WriteLine("Ha ocurrido un error.");
                  return null;
              }*/
-            return null;
-        }
-
 
         internal List<Evento> RetriveByEvento(int idEve, int idMer)
         {
-            /*MySqlConnection con = Connect();
+           
+            return null;
+        }
+ /*MySqlConnection con = Connect();
              MySqlCommand command = con.CreateCommand();
              command.CommandText = "SELECT * FROM mercados WHERE id_evento=@A AND tipoMercado=@B";
              command.Parameters.AddWithValue("@A", idEve);
@@ -116,7 +138,5 @@ namespace PlaceMyBet.Models
                  return null;
              }
              */
-            return null;
-        }
     }
 }

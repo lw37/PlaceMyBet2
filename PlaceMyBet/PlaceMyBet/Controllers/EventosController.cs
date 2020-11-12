@@ -11,10 +11,10 @@ namespace PlaceMyBet.Controllers
     public class EventosController : ApiController
     {
         // GET: api/Eventos
-        public IEnumerable<EventoDTO> Get()
+        public IEnumerable<Evento> Get()
         {
             var repo = new EventosRepository();
-            List<EventoDTO> eventos = repo.RetrieveDTO();
+            List<Evento> eventos = repo.Retrieve();
             return eventos;
         }
 
@@ -26,8 +26,12 @@ namespace PlaceMyBet.Controllers
         }
 
         // POST: api/Eventos
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Evento evento)
         {
+
+                var repo = new EventosRepository();
+                repo.save(evento);
+            
         }
 
         // PUT: api/Eventos/5
