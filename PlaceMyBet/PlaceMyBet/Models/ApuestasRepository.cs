@@ -10,55 +10,57 @@ namespace PlaceMyBet.Models
 {
     public class ApuestasRepository
     {
-        /*private MySqlConnection Connect()
-        {
-            string server = "server=localhost;";
-            string port = "port=3306;";
-            string database = "database=PlaceMyBet;";
-            string usuario = "uid=root;";
-            string password = "pwd=;";
-            string convert = "Convert Zero Datetime=True;";
-            string connectionstring = server + port + database + usuario + password + convert;
-
-            MySqlConnection conexion = new MySqlConnection(connectionstring);
-            return conexion;
-        }
-
         internal List<Apuesta> Retrieve()
-        {
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "select * from APUESTAS";
-            try
+        { return null; }
+            /*private MySqlConnection Connect()
             {
-                con.Open();
-                MySqlDataReader resultado = command.ExecuteReader();
+                string server = "server=localhost;";
+                string port = "port=3306;";
+                string database = "database=PlaceMyBet;";
+                string usuario = "uid=root;";
+                string password = "pwd=;";
+                string convert = "Convert Zero Datetime=True;";
+                string connectionstring = server + port + database + usuario + password + convert;
 
-                Apuesta apuesta = null;
-                List<Apuesta> apuestas = new List<Apuesta>();
-                while (resultado.Read())
+                MySqlConnection conexion = new MySqlConnection(connectionstring);
+                return conexion;
+            }
+
+            internal List<Apuesta> Retrieve()
+            {
+                MySqlConnection con = Connect();
+                MySqlCommand command = con.CreateCommand();
+                command.CommandText = "select * from APUESTAS";
+                try
                 {
-                    Debug.WriteLine("Recuperado: " + resultado.GetInt32(0) + " " + resultado.GetInt32(1) + " "
-                        + resultado.GetString(2) + " " + resultado.GetBoolean(3) + " " + resultado.GetDouble(4)
-                        + " " + resultado.GetDouble(5) + " " + resultado.GetDateTime(6));
+                    con.Open();
+                    MySqlDataReader resultado = command.ExecuteReader();
 
-                    apuesta = new Apuesta(resultado.GetInt32(0), resultado.GetInt32(1),
-                        resultado.GetString(2) ,resultado.GetBoolean(3), resultado.GetDouble(4),
-                        resultado.GetDouble(5), resultado.GetDateTime(6));
-                    apuestas.Add(apuesta);
+                    Apuesta apuesta = null;
+                    List<Apuesta> apuestas = new List<Apuesta>();
+                    while (resultado.Read())
+                    {
+                        Debug.WriteLine("Recuperado: " + resultado.GetInt32(0) + " " + resultado.GetInt32(1) + " "
+                            + resultado.GetString(2) + " " + resultado.GetBoolean(3) + " " + resultado.GetDouble(4)
+                            + " " + resultado.GetDouble(5) + " " + resultado.GetDateTime(6));
+
+                        apuesta = new Apuesta(resultado.GetInt32(0), resultado.GetInt32(1),
+                            resultado.GetString(2) ,resultado.GetBoolean(3), resultado.GetDouble(4),
+                            resultado.GetDouble(5), resultado.GetDateTime(6));
+                        apuestas.Add(apuesta);
+                    }
+                    con.Close();
+                    return apuestas;
                 }
-                con.Close();
-                return apuestas;
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
-                Debug.WriteLine("Ha ocurrido un error.");
-                return null;
-            }
-        }*/
+                    Debug.WriteLine("Ha ocurrido un error.");
+                    return null;
+                }
+            }*/
 
-        internal List<ApuestaDTO> RetrieveDTObyEmail(string email,double tipoMercado)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1.5
+            internal List<ApuestaDTO> RetrieveDTObyEmail(string email,double tipoMercado)//utiliza estos para comprobar: luo.luo.ll14@gmail.com y 1.5
         {
             Comas();
             /* MySqlConnection con = Connect();

@@ -333,10 +333,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201112173743_p1.cs" />
+    <Compile Include="Migrations\20201112173743_p1.designer.cs">
+      <DependentUpon>20201112173743_p1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201112174624_p2.cs" />
+    <Compile Include="Migrations\20201112174624_p2.designer.cs">
+      <DependentUpon>20201112174624_p2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\PlaceMyBetContextModelSnapshot.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apuesta.cs" />
     <Compile Include="Models\ApuestasRepository.cs" />
+    <Compile Include="Models\Cuenta.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\EventosRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
