@@ -45,7 +45,7 @@ namespace PlaceMyBet.Controllers
         public void Post([FromBody]Apuesta apuesta)
         {
             var repo = new ApuestasRepository();
-            repo.Insertar(apuesta);
+            repo.Save(apuesta);
         }
 
         // PUT: api/Apuestas/5

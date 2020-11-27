@@ -18,7 +18,6 @@ namespace PlaceMyBet.Models
                 apuestas = context.Apuestas.ToList();
             }
             return apuestas;
-        
         }
 
         internal Apuesta Retrieve(int id)
@@ -29,8 +28,38 @@ namespace PlaceMyBet.Models
                 apuesta = context.Apuestas.Where(a => a.ApuestaId == id).FirstOrDefault();
             }
             return apuesta;
+        }
+
+        internal void Save(Apuesta apuesta)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            context.Apuestas.Add(apuesta);
+            context.SaveChanges();
+            Mercado mercado;
+            int id = apuesta.MercadoId;
+            using (PlaceMyBetContext context1 = new PlaceMyBetContext())
+            {
+                mercado = context1.Mercados.Where(m => m.MercadoId == id).FirstOrDefault();
+                if (apuesta.TipoApuesta == true)
+                {
+                    mercado.DineroOver += apuesta.DineroApostado;
+                    double prob = mercado.DineroOver / (mercado.DineroOver + mercado.DineroUnder);
+                    mercado.CuotaOver = 1 / prob * 0.95;
+                }
+                else 
+                {
+                    mercado.DineroUnder += apuesta.DineroApostado;
+                    double prob = mercado.DineroUnder / (mercado.DineroOver + mercado.DineroUnder); 
+                    mercado.CuotaUnder = 1 / prob * 0.95;
+                }
+
+                context1.SaveChanges();
+            }
+
 
         }
+
+
         /*private MySqlConnection Connect()
         {
             string server = "server=localhost;";

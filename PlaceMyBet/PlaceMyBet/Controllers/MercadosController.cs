@@ -18,12 +18,13 @@ namespace PlaceMyBet.Controllers
             return mercados;
         }
         // GET: api/Mercados?evento=val1&mercado=val2
-        public IEnumerable<Mercado> GetMercado(int evento,double mercado)
+       /*  public IEnumerable<Mercado> GetMercado(int evento,double mercado)
         {
-            var repo = new MercadosRepository();
+           var repo = new MercadosRepository();
             List<Mercado> mercados = repo.RetrieveByMercadoEvento(evento,mercado);
             return mercados;
-        }
+       
+        }*/
 
 
         // GET: api/Mercados/5
@@ -35,8 +36,10 @@ namespace PlaceMyBet.Controllers
         }
 
         // POST: api/Mercados
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Mercado mercado)
         {
+            var repo = new MercadosRepository();
+            repo.Save(mercado);
         }
 
         // PUT: api/Mercados/5
