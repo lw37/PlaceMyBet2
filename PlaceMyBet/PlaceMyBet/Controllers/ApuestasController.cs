@@ -12,26 +12,26 @@ namespace PlaceMyBet.Controllers
     {
       // GET:api/Apuestas
         //[Authorize(Roles ="Admin")]
-        public IEnumerable<Apuesta> Get()
+        public IEnumerable<ApuestaDTO> Get()
         {
             var repo = new ApuestasRepository();
-            List<Apuesta> apuestas = repo.Retrieve();
+            List<ApuestaDTO> apuestas = repo.RetrieveDTO();
             return apuestas;
         }
         // GET: api/Apuestas?email=vl1&tipoMercado=vl2
-        public IEnumerable<ApuestaDTO> GetEmail(string email,double tipoMercado)
+    /*    public IEnumerable<ApuestaDTO> GetEmail(string email,double tipoMercado)
         {
             var repo = new ApuestasRepository();
             List<ApuestaDTO> apuestas = repo.RetrieveDTObyEmail(email,tipoMercado);
             return apuestas;
         }
         // GET: api/Apuestas?idmercado=1&email=luo.luo.ll14@gmail.com
-        public IEnumerable<ApuestaDTOmer> GetMercado(int idMercado, string email)
+      /*  public IEnumerable<ApuestaDTOmer> GetMercado(int idMercado, string email)
         {
             var repo = new ApuestasRepository();
             List<ApuestaDTOmer> apuestas = repo.RetrieveDTObyMercado(idMercado,email);
             return apuestas;
-        }
+        }*/
         // GET: api/Apuestas/5
         public Apuesta Get(int id)
         {

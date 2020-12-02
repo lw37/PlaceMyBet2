@@ -70,12 +70,19 @@ namespace PlaceMyBet.Models
 
         internal List<EventoDTO> RetrieveDTO()
         {
-            List<EventoDTO> eventos = new List<EventoDTO>();
+            List<Evento> eventos = new List<Evento>();
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                eventos = context.Eventos.Select(p => ToDTO(p)).ToList();
+                eventos = context.Eventos.ToList();
             }
-            return eventos;
+            
+            List<EventoDTO> eventos1 = new List<EventoDTO>();
+
+            foreach (var evento in eventos)
+            {
+                eventos1.Add(ToDTO(evento));
+            }
+            return eventos1;
 
         }
 
