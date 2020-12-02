@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,8 +17,9 @@ namespace PlaceMyBet.Models
                 List<Mercado> mercados = new List<Mercado>();
                 using (PlaceMyBetContext context = new PlaceMyBetContext())
                 {
-                mercados = context.Mercados.ToList();
+                mercados = context.Mercados.Include(p => p.Evento).ToList();
                 }
+
                 return mercados;
             
         }
@@ -33,6 +35,7 @@ namespace PlaceMyBet.Models
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
                 mercado = context.Mercados.Where(m => m.MercadoId == id).FirstOrDefault();
+
             }
             return mercado;
 

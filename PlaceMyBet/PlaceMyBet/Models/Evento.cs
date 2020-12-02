@@ -40,16 +40,17 @@ namespace PlaceMyBet.Models
 
     public class EventoDTO  
     {
-        public String nombreEquipos { get; set; }
-        public String visitantes { get; set; }
-        public DateTime fechaEventos { get; set; }
-
-        public EventoDTO(String nombreEquipos ,String visitantes, DateTime fechaEventos)
+        public EventoDTO(string nombreEquipo, string visitante, DateTime fechaEvento)
         {
-
-            this.nombreEquipos = nombreEquipos;
-            this.visitantes = visitantes;
-            this.fechaEventos = fechaEventos;
+            NombreEquipo = nombreEquipo;
+            Visitante = visitante;
+            FechaEvento = fechaEvento;
         }
+
+        public String NombreEquipo { get; set; }
+        public String Visitante { get; set; }
+        public DateTime FechaEvento { get; set; }
+        public List<Mercado> Mercado { get; set; }
+
     }
 }
