@@ -94,27 +94,9 @@ namespace PlaceMyBet.Models
 
         }
 
-        public void Comas()
-        {
-            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
-            culInfo.NumberFormat.NumberDecimalSeparator = ".";
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            culInfo.NumberFormat.PercentDecimalSeparator = ".";
-            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
-        }
 
-        public double Probabilidad(Apuesta apu)
-        {
-           
-            return 0;
-        }
- 
-        internal void Insertar(Apuesta a)
-        {
 
-        }
 
-        
+
     }
 }

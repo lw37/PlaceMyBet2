@@ -23,7 +23,7 @@ namespace PlaceMyBet.Models
                 return mercados;
             
         }
-        internal   void Save(Mercado mercado)
+        internal void Save(Mercado mercado)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();
             context.Mercados.Add(mercado);

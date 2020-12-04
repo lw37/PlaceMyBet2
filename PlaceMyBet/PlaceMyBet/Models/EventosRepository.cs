@@ -93,33 +93,35 @@ namespace PlaceMyBet.Models
             context.SaveChanges();
         }
 
+        internal void Delete(int id)
+        {
+            Evento evento;
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                evento = context.Eventos.Where(e => e.EventoId == id).FirstOrDefault();
+                context.Eventos.Remove(evento);
+                context.SaveChanges();
+
+            }
+
+        }
+        internal void Update(int id,Evento evento1) {
+            Evento evento;
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                evento = context.Eventos.Where(e => e.EventoId == id).FirstOrDefault();
+                evento.NombreEquipo = evento1.NombreEquipo;
+                evento.Visitante = evento1.Visitante;
+
+                context.Eventos.Update(evento);
+                context.SaveChanges();
+
+            }
+
+        }
 
 
- /* MySqlConnection con = Connect();
-             MySqlCommand command = con.CreateCommand();
-             command.CommandText = "select nombreEquipo,visitante,fechaEvento from eventos";
-             try
-             {
-                 con.Open();
-                 MySqlDataReader resultado = command.ExecuteReader();
-                 EventoDTO evento = null;
-                 List<EventoDTO> eventos = new List<EventoDTO>();
-                 while (resultado.Read())
-                 {
-                     Debug.WriteLine("Recuperado: "
-                         + resultado.GetString(0) + " " + resultado.GetString(1) + " " + resultado.GetDateTime(2));
-                     evento = new EventoDTO(
-                         resultado.GetString(0), resultado.GetString(1), resultado.GetDateTime(2));
-                     eventos.Add(evento);
-                 }
-                 con.Close();
-                 return eventos;
-             }
-             catch (Exception)
-             {
-                 Debug.WriteLine("Ha ocurrido un error.");
-                 return null;
-             }*/
+
 
         internal List<Evento> RetriveByEvento(int idEve, int idMer)
         {
