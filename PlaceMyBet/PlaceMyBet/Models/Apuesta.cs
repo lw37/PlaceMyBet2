@@ -7,6 +7,8 @@ namespace PlaceMyBet.Models
 {
     public class Apuesta
     {
+
+        //Herramienta->Nuget->Consola    Remove-Migration   add-migration m1 -Context PlaceMyBetContext   update-database -Context PlaceMyBetContext
         public int ApuestaId { get; set; }
         public bool TipoApuesta { get; set; }
         public double Cuota { get; set; }
@@ -36,14 +38,14 @@ namespace PlaceMyBet.Models
     {
 
 
-        public ApuestaDTO(string usuarioId, int eventoId, bool tipoApuesta, double cuota, double dineroApostado, Mercado mercado)
+        public ApuestaDTO(string usuarioId, int eventoId, bool tipoApuesta, double cuota, double dineroApostado)
         {
             UsuarioId = usuarioId;
             EventoId = eventoId;
             TipoApuesta = tipoApuesta;
             Cuota = cuota;
             DineroApostado = dineroApostado;
-            Mercado = mercado;
+           
         }
 
         public String UsuarioId { get; set; }

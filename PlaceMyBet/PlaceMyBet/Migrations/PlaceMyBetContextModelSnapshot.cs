@@ -102,7 +102,8 @@ namespace PlaceMyBet.Migrations
 
                     b.HasKey("CuentaId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioId")
+                        .IsUnique();
 
                     b.ToTable("Cuentas");
 
@@ -233,8 +234,8 @@ namespace PlaceMyBet.Migrations
             modelBuilder.Entity("PlaceMyBet.Models.Cuenta", b =>
                 {
                     b.HasOne("PlaceMyBet.Models.Usuario", "Usuario")
-                        .WithMany("Cuentas")
-                        .HasForeignKey("UsuarioId");
+                        .WithOne("Cuentas")
+                        .HasForeignKey("PlaceMyBet.Models.Cuenta", "UsuarioId");
                 });
 
             modelBuilder.Entity("PlaceMyBet.Models.Mercado", b =>

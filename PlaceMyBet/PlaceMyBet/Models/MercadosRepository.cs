@@ -12,16 +12,12 @@ namespace PlaceMyBet.Models
     {
         internal List<Mercado> Retrieve()
         {
-        
-
                 List<Mercado> mercados = new List<Mercado>();
                 using (PlaceMyBetContext context = new PlaceMyBetContext())
                 {
                 mercados = context.Mercados.Include(p => p.Evento).ToList();
                 }
-
                 return mercados;
-            
         }
         internal void Save(Mercado mercado)
         {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlaceMyBet.Migrations
 {
-    public partial class p1 : Migration
+    public partial class m1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -143,6 +143,11 @@ namespace PlaceMyBet.Migrations
                 columns: new[] { "ApuestaId", "Cuota", "DineroApostado", "FechaApuesta", "MercadoId", "TipoApuesta", "UsuarioId" },
                 values: new object[] { 2, 2.8500000000000001, 100.0, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, true, "1000@qq.com" });
 
+            migrationBuilder.InsertData(
+                table: "Apuestas",
+                columns: new[] { "ApuestaId", "Cuota", "DineroApostado", "FechaApuesta", "MercadoId", "TipoApuesta", "UsuarioId" },
+                values: new object[] { 3, 2.8500000000000001, 300.0, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, true, "1000@qq.com" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Apuestas_MercadoId",
                 table: "Apuestas",
@@ -156,7 +161,8 @@ namespace PlaceMyBet.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cuentas_UsuarioId",
                 table: "Cuentas",
-                column: "UsuarioId");
+                column: "UsuarioId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Mercados_EventoId",

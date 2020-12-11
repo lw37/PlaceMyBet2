@@ -9,8 +9,8 @@ using PlaceMyBet.Models;
 namespace PlaceMyBet.Migrations
 {
     [DbContext(typeof(PlaceMyBetContext))]
-    [Migration("20201112174624_p2")]
-    partial class p2
+    [Migration("20201211173221_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,7 +104,8 @@ namespace PlaceMyBet.Migrations
 
                     b.HasKey("CuentaId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioId")
+                        .IsUnique();
 
                     b.ToTable("Cuentas");
 
@@ -235,8 +236,8 @@ namespace PlaceMyBet.Migrations
             modelBuilder.Entity("PlaceMyBet.Models.Cuenta", b =>
                 {
                     b.HasOne("PlaceMyBet.Models.Usuario", "Usuario")
-                        .WithMany("Cuentas")
-                        .HasForeignKey("UsuarioId");
+                        .WithOne("Cuentas")
+                        .HasForeignKey("PlaceMyBet.Models.Cuenta", "UsuarioId");
                 });
 
             modelBuilder.Entity("PlaceMyBet.Models.Mercado", b =>

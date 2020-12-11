@@ -112,10 +112,8 @@ namespace PlaceMyBet.Models
                 evento = context.Eventos.Where(e => e.EventoId == id).FirstOrDefault();
                 evento.NombreEquipo = evento1.NombreEquipo;
                 evento.Visitante = evento1.Visitante;
-
                 context.Eventos.Update(evento);
                 context.SaveChanges();
-
             }
 
         }
