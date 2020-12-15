@@ -67,7 +67,7 @@ namespace PlaceMyBet.Models
             this.cuotas = cuotas;
             this.dineroApostado = dineroApostado;
         }
-
+        
         public double tipoMercado { get; set; }
         public bool tipoApuesta { get; set; }
         public double cuotas { get; set; }
