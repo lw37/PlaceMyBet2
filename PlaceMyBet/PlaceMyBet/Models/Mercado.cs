@@ -33,16 +33,16 @@ namespace PlaceMyBet.Models
     }
     public class MercadoDTO
     {
-        public MercadoDTO(double tipoMercado, double cuotaOver, double cuotaUnder)
+        public MercadoDTO(double dineroApostado, bool tipo, string nombre)
         {
-            TipoMercado = tipoMercado;
-            CuotaOver = cuotaOver;
-            CuotaUnder = cuotaUnder;
+            DineroApostado = dineroApostado;
+            Tipo = tipo;
+            Nombre = nombre;
         }
 
-        public double TipoMercado { get; set; }
-        public double CuotaOver { get; set; }
-        public double CuotaUnder { get; set; }
+        public double DineroApostado { get; set; }
+        public bool Tipo { get; set; }
+        public string Nombre { get; set; }
 
 
     }

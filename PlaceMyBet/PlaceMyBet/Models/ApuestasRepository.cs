@@ -42,16 +42,16 @@ namespace PlaceMyBet.Models
             }
 
             List<ApuestaDTO> apuestas1 = new List<ApuestaDTO>();
-
+/*
             foreach (var apuesta in apuestas)
             {
                 apuestas1.Add(ToDTO(apuesta));
 
-            }
+            } */
             return apuestas1;
         }
 
-        public ApuestaDTO ToDTO(Apuesta a)
+      /* public ApuestaDTO ToDTO(Apuesta a)
         {
     
 
@@ -62,9 +62,9 @@ namespace PlaceMyBet.Models
 
             }
 
-            return new ApuestaDTO(a.UsuarioId,mercado.EventoId,a.TipoApuesta,a.Cuota,a.DineroApostado);
+           // return new ApuestaDTO(a.UsuarioId,mercado.EventoId,a.TipoApuesta,a.Cuota,a.DineroApostado);
         }
-
+*/
         internal void Save(Apuesta apuesta)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();

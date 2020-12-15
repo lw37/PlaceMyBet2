@@ -36,24 +36,16 @@ namespace PlaceMyBet.Models
 
     public class ApuestaDTO
     {
-
-
-        public ApuestaDTO(string usuarioId, int eventoId, bool tipoApuesta, double cuota, double dineroApostado)
+        public ApuestaDTO(double dineroApostado, bool tipo, string nombre)
         {
-            UsuarioId = usuarioId;
-            EventoId = eventoId;
-            TipoApuesta = tipoApuesta;
-            Cuota = cuota;
             DineroApostado = dineroApostado;
-           
+            Tipo = tipo;
+            Nombre = nombre;
         }
 
-        public String UsuarioId { get; set; }
-        public int EventoId { get; set; }
-        public bool TipoApuesta { get; set; }
-        public double Cuota { get; set; }
         public double DineroApostado { get; set; }
-        public Mercado Mercado { get; set; }
+        public bool Tipo { get; set; }
+        public string Nombre { get; set; }
 
 
 
