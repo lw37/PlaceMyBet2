@@ -32,39 +32,40 @@ namespace PlaceMyBet.Models
             return apuesta;
         }
 
-        internal List<ApuestaDTO> RetrieveDTO()
+        internal List<ApuestaDTOdro> RetrieveDTO(double dineroApostado)
         {
             List<Apuesta> apuestas = new List<Apuesta>();
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                apuestas = context.Apuestas.Include(m => m.Mercado).ToList();
+                apuestas = context.Apuestas.Where(a=>a.DineroApostado==dineroApostado).ToList();
 
             }
 
-            List<ApuestaDTO> apuestas1 = new List<ApuestaDTO>();
-/*
+            List<ApuestaDTOdro> apuestas1 = new List<ApuestaDTOdro>();
+
             foreach (var apuesta in apuestas)
             {
                 apuestas1.Add(ToDTO(apuesta));
 
-            } */
+            } 
             return apuestas1;
         }
 
-      /* public ApuestaDTO ToDTO(Apuesta a)
+      public ApuestaDTOdro ToDTO(Apuesta a)
         {
     
 
             Mercado mercado;
+            Evento evento;
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
                 mercado = context.Mercados.Where(m => m.MercadoId == a.MercadoId).FirstOrDefault();
-
+                evento = context.Eventos.Where(e => e.EventoId == mercado.EventoId).FirstOrDefault();
             }
 
-           // return new ApuestaDTO(a.UsuarioId,mercado.EventoId,a.TipoApuesta,a.Cuota,a.DineroApostado);
+          return new ApuestaDTOdro(a.TipoApuesta,evento.NombreEquipo,evento.Visitante);
         }
-*/
+
         internal void Save(Apuesta apuesta)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();

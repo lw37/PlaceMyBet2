@@ -50,20 +50,18 @@ namespace PlaceMyBet.Models
 
 
     }
-    public class ApuestaDTOmer
+    public class ApuestaDTOdro
     {
-        public ApuestaDTOmer(double tipoMercado, bool tipoApuesta, double cuotas, double dineroApostado)
+        public ApuestaDTOdro(bool tipo, string equipo_local, string equipo_visitante)
         {
-            this.tipoMercado = tipoMercado;
-            this.tipoApuesta = tipoApuesta;
-            this.cuotas = cuotas;
-            this.dineroApostado = dineroApostado;
+            Tipo = tipo;
+            Equipo_local = equipo_local;
+            Equipo_visitante = equipo_visitante;
         }
-        
-        public double tipoMercado { get; set; }
-        public bool tipoApuesta { get; set; }
-        public double cuotas { get; set; }
-        public double dineroApostado { get; set; }
+
+        public bool Tipo { get; set; }
+        public string Equipo_local { get; set; }
+        public string Equipo_visitante { get; set; }
 
 
 

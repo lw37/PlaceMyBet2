@@ -10,28 +10,29 @@ namespace PlaceMyBet.Controllers
 {
     public class ApuestasController : ApiController
     {
-      // GET:api/Apuestas
+        // GET:api/Apuestas
         //[Authorize(Roles ="Admin")]
-        public IEnumerable<ApuestaDTO> Get()
+        // GET: api/Apuestas?dinero={double}
+        public IEnumerable<ApuestaDTOdro> GetMercado(double dinero)
         {
             var repo = new ApuestasRepository();
-            List<ApuestaDTO> apuestas = repo.RetrieveDTO();
+            List<ApuestaDTOdro> apuestas = repo.RetrieveDTO(dinero);
             return apuestas;
         }
         // GET: api/Apuestas?email=vl1&tipoMercado=vl2
-    /*    public IEnumerable<ApuestaDTO> GetEmail(string email,double tipoMercado)
-        {
-            var repo = new ApuestasRepository();
-            List<ApuestaDTO> apuestas = repo.RetrieveDTObyEmail(email,tipoMercado);
-            return apuestas;
-        }
-        // GET: api/Apuestas?idmercado=1&email=luo.luo.ll14@gmail.com
-      /*  public IEnumerable<ApuestaDTOmer> GetMercado(int idMercado, string email)
-        {
-            var repo = new ApuestasRepository();
-            List<ApuestaDTOmer> apuestas = repo.RetrieveDTObyMercado(idMercado,email);
-            return apuestas;
-        }*/
+        /*    public IEnumerable<ApuestaDTO> GetEmail(string email,double tipoMercado)
+            {
+                var repo = new ApuestasRepository();
+                List<ApuestaDTO> apuestas = repo.RetrieveDTObyEmail(email,tipoMercado);
+                return apuestas;
+            }
+            // GET: api/Apuestas?idmercado=1&email=luo.luo.ll14@gmail.com
+          /*  public IEnumerable<ApuestaDTOmer> GetMercado(int idMercado, string email)
+            {
+                var repo = new ApuestasRepository();
+                List<ApuestaDTOmer> apuestas = repo.RetrieveDTObyMercado(idMercado,email);
+                return apuestas;
+            }*/
         // GET: api/Apuestas/5
         public Apuesta Get(int id)
         {
